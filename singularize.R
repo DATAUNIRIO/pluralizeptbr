@@ -57,15 +57,38 @@ singular <- function(plural_word) {
     grepl("(ãos)$",plural_word)==TRUE ~ gsub("(ãos)$","ão",plural_word),
     # Termina em "ãos"
     grepl("(óis)$",plural_word)==TRUE ~ gsub("(óis)$","ói",plural_word),
+    # Termina em 'al', 'el', 'ol', 'ul'
+    grepl("(is)$",plural_word)==TRUE ~ gsub("(is)$","l",plural_word),
     TRUE ~ as.character(plural_word)
     )
 }
+# primeiro problema
+singular(c("girassol", "girassóis","herói", "heróis"))
 
+singular(c("girassol", "girassóis", "vogal", "vogais", "azul", "azuis"))
 singular(c("herói", "heróis", "irmão", "irmãos", "plâncton", "plânctons"))
 singular(c("hambúrguer", "hambúrgueres", "chafariz", "chafarizes", "colher", "colheres"))
 singular(c("abordagens", "modelagem", "homens","homem"))
 
 
+
+#Os substantivos que terminam em 'il' são pluralizados de duas formas:
+# a) Em palavras oxítonas terminadas em 'il':
+c("anil", "anis", "juvenil", "juvenis")
+#b) Em palavras paroxítonas terminadas em 'il':
+c("inútil", "inúteis", "réptil", "répteis")
+
+
+# Os substantivos terminados em 'ão' podem ser pluralizados de três formas:
+#  a) Substituindo o 'ão' por 'es':
+c("doação", "doações", "emoção", "emoções")
+#b) Substituindo o 'ão' por 'ães':
+c("alemão", "alemães", "pão", "pães")
+# Substituindo o 'ão' por 'ãos':
+c("cidadão", "cidadãos")
+
+#Os substantivos terminados em consoante 'x' são invariáveis
+#córtex - córtex
 
 
 
