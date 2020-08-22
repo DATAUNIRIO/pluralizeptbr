@@ -51,20 +51,36 @@ singular <- function(plural_word) {
     # REGRAS
     # Termina em "ns"
     grepl("(ns)$",plural_word)==TRUE ~ gsub("(ns)$","m",plural_word),
-    # Termina em "es"
-    grepl("(es)$",plural_word)==TRUE ~ gsub("(es)$","",plural_word),
+    # -r no singular para -res no plural
+    grepl("(res)$",plural_word)==TRUE ~ gsub("(res)$","r",plural_word),
+    #-z no singular para -zes no plural
+    grepl("(zes)$",plural_word)==TRUE ~ gsub("(zes)$","z",plural_word),
+    #-s no singular para -ses no plural
+    grepl("(ses)$",plural_word)==TRUE ~ gsub("(ses)$","s",plural_word),    
+    
     # Termina em "ãos"
     grepl("(ãos)$",plural_word)==TRUE ~ gsub("(ãos)$","ão",plural_word),
     # Termina em "ãos"
     grepl("(óis)$",plural_word)==TRUE ~ gsub("(óis)$","ói",plural_word),
     # Termina em 'al', 'el', 'ol', 'ul'
     grepl("(is)$",plural_word)==TRUE ~ gsub("(is)$","l",plural_word),
+    # A principal regra de formação do plural indica que se deve acrescentar -s à palavra no singular:
+    grepl("(s)$",plural_word)==TRUE ~ gsub("(s)$","",plural_word),
     TRUE ~ as.character(plural_word)
     )
 }
+
+  
+
+
+
 # primeiro problema
 singular(c("girassol", "girassóis","herói", "heróis"))
+singular(c("português", "portugueses", "país", "países", "revés", "reveses", "freguês", "fregueses"))
 
+
+singular(c("mulher", "mulheres", "hambúrguer", "hambúrgueres", "açúcar", "açúcares", "mar", "mares", "bar", "bares"))
+singular(c("raiz", "raízes", "gravidez", "gravidezes", "avestruz", "avestruzes", "rapaz", "rapazes"))
 singular(c("girassol", "girassóis", "vogal", "vogais", "azul", "azuis"))
 singular(c("herói", "heróis", "irmão", "irmãos", "plâncton", "plânctons"))
 singular(c("hambúrguer", "hambúrgueres", "chafariz", "chafarizes", "colher", "colheres"))
